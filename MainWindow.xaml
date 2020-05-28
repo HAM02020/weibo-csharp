@@ -1,0 +1,185 @@
+﻿<Window x:Class="Final.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Final"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="Transparent"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStyle="None" AllowsTransparency="True" MinWidth="800" MinHeight="450"
+        >
+    
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="2"/>
+    </WindowChrome.WindowChrome>
+
+    <Grid Background="Transparent">
+        <Border Background="White" Margin="10">
+            <Border.Effect>
+                <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="20" Opacity="0.25" Color="#FF5B5B5B"></DropShadowEffect>
+            </Border.Effect>
+        </Border>
+        <Grid Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border Background="White" Margin="10 10 0 10" >
+                <Border.Effect>
+                    <DropShadowEffect Color="black" BlurRadius="20" ShadowDepth="10" Opacity="0.15" />
+                </Border.Effect>
+            </Border>
+
+            <Grid Grid.Column="0" Margin="10 10 0 10">
+
+                <Grid.Background>
+                    <ImageBrush ImageSource="pic\backgroud.jpg" Stretch="UniformToFill" Opacity="0.2"/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="89*"/>
+                    <RowDefinition Height="34*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="新浪微博" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontWeight="Light" Height="26" Margin="56,27" Width="88"/>
+
+                <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
+                <StackPanel Name="sp_btns" Grid.Row="1" Margin="0,0,0,13.2">
+                    <Button Name="btn_home" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" HorizontalAlignment="Center" Margin="15 20 15 0" Background="#6666ff" Click="Btn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <!--图标-->
+                            <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
+                            <!--文字-->
+                            <TextBlock Text="首页" VerticalAlignment="Center" Margin="15 0 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btn_msg" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" HorizontalAlignment="Center" Margin="15 20 15 0" Background="Transparent" BorderThickness="0" Click="Btn_Click" Foreground="#848484">
+                        <StackPanel Orientation="Horizontal">
+                            <!--图标-->
+                            <TextBlock Text="&#xe8b4;" FontFamily="{StaticResource IconFont}" FontSize="22" />
+                            <!--文字-->
+                            <TextBlock Text="私信" VerticalAlignment="Center" Margin="15 0 0 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btn_discover" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" HorizontalAlignment="Center" Margin="15 20 15 0" Background="Transparent" BorderThickness="0" Click="Btn_Click" Foreground="#848484">
+                        <StackPanel Orientation="Horizontal">
+                            <!--图标-->
+                            <TextBlock Text="&#xe8b6;" FontFamily="{StaticResource IconFont}" FontSize="22" />
+                            <!--文字-->
+                            <TextBlock Text="发现" VerticalAlignment="Center" Margin="15 0 0 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Name="btn_profile" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" HorizontalAlignment="Center" Margin="15 20 15 0" Background="Transparent" BorderThickness="0" Click="Btn_Click" Foreground="#848484">
+                        <StackPanel Orientation="Horizontal">
+                            <!--图标-->
+                            <TextBlock Text="&#xe8bd;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
+                            <!--文字-->
+                            <TextBlock Text="自己" VerticalAlignment="Center" Margin="15 0 0 0" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <Button Background="Transparent" BorderThickness="0" Foreground="#848484">
+                        <TextBlock Text="&#xe8b9;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
+                    </Button>
+                    <Button Name="btn_exit" Background="Transparent" BorderThickness="0" Foreground="#848484" Margin="90 0 0 0" Click="Btn_exit_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="&#xe533;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+            <!--未登录页面-->
+            <Grid Name="gd_welcome" Grid.Column="1">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="&#xe8bd;" FontFamily="{StaticResource IconFont}" Foreground="#CD0000" FontSize="200" HorizontalAlignment="Center"/>
+                    <TextBlock Text="还未登录 登录后解锁精彩内容~!" Foreground="#848484" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#87CEFA">
+                            <StackPanel Orientation="Horizontal">
+                                <!--图标-->
+                                <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
+                                <!--文字-->
+                                <TextBlock Text="登录" VerticalAlignment="Center" Margin="15 0 0 0" HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Button>
+                        <Button  materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#43CD80">
+                            <StackPanel Orientation="Horizontal">
+                                <!--图标-->
+                                <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
+                                <!--文字-->
+                                <TextBlock Text="注册" VerticalAlignment="Center" Margin="15 0 0 0"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+            <!--已登录页-->
+            <Grid Name="gd_pages" Grid.Column="1" Margin="15" Visibility="Hidden">
+                <!--首页-->
+                <Grid Name="page_home">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="用户名" VerticalAlignment="Center" Margin="50 0 0 0" FontSize="22" FontWeight="Light"/>
+                    <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
+                    <ScrollViewer Grid.Row="1">
+
+                    </ScrollViewer>
+                </Grid>
+                <!--私信-->
+                <Grid Name="page_msg" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="私信" VerticalAlignment="Center" Margin="50 0 0 0" FontSize="22" FontWeight="Light"/>
+                    <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
+                    <ScrollViewer Grid.Row="1">
+
+                    </ScrollViewer>
+                </Grid>
+                <!--发现-->
+                <Grid Name="page_discover" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="发现" VerticalAlignment="Center" Margin="50 0 0 0" FontSize="22" FontWeight="Light"/>
+                    <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
+                    <ScrollViewer Grid.Row="1">
+
+                    </ScrollViewer>
+                </Grid>
+                <!--自己-->
+                <Grid Name="page_profile" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="自己" VerticalAlignment="Center" Margin="50 0 0 0" FontSize="22" FontWeight="Light"/>
+                    <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
+                    <ScrollViewer Grid.Row="1">
+
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
