@@ -19,7 +19,7 @@
     
     
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="2"/>
+        <WindowChrome ResizeBorderThickness="10"/>
     </WindowChrome.WindowChrome>
 
     <Grid Background="Transparent">
@@ -52,7 +52,7 @@
                     <RowDefinition Height="34*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="新浪微博" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontWeight="Light" Height="26" Margin="56,27" Width="88"/>
+                <TextBlock Text="新浪微博" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontWeight="Light"/>
 
                 <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
                 <StackPanel Name="sp_btns" Grid.Row="1" Margin="0,0,0,13.2">
@@ -107,7 +107,7 @@
                     <TextBlock Text="&#xe8bd;" FontFamily="{StaticResource IconFont}" Foreground="#CD0000" FontSize="200" HorizontalAlignment="Center"/>
                     <TextBlock Text="还未登录 登录后解锁精彩内容~!" Foreground="#848484" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#87CEFA">
+                        <Button Name="btn_login" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#87CEFA" Click="Btn_login_Click">
                             <StackPanel Orientation="Horizontal">
                                 <!--图标-->
                                 <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
@@ -115,7 +115,7 @@
                                 <TextBlock Text="登录" VerticalAlignment="Center" Margin="15 0 0 0" HorizontalAlignment="Right"/>
                             </StackPanel>
                         </Button>
-                        <Button  materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#43CD80">
+                        <Button Name="btn_register" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#43CD80">
                             <StackPanel Orientation="Horizontal">
                                 <!--图标-->
                                 <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22"/>

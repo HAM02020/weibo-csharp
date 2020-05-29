@@ -26,6 +26,8 @@ namespace Final
         {
             InitializeComponent();
             SetupUI();
+            
+            
 
         }
         /// <summary>
@@ -113,6 +115,12 @@ namespace Final
                 Application.Current.Shutdown();
             }
 
+        }
+
+        private void Btn_login_Click(object sender, RoutedEventArgs e)
+        {
+            Login loginFrame = new Login();
+            loginFrame.ShowDialog();
         }
     }
 }
