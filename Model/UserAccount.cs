@@ -11,7 +11,7 @@ namespace Final.Model
 {
     public class UserAccount
     {
-        private static UserAccount instance = new UserAccount();
+        private static readonly UserAccount instance = new UserAccount();
         public static UserAccount Shared()
         {
             return instance;
@@ -29,14 +29,18 @@ namespace Final.Model
         private UserAccount()
         {
             //从文件加载用户信息
-            StreamReader reader = File.OpenText("userAccount.json");
-            JsonTextReader jsonTextReader = new JsonTextReader(reader);
-            JObject jsonObject = (JObject)JToken.ReadFrom(jsonTextReader);
-            Console.WriteLine(jsonObject);
-            this.access_token = (string)jsonObject["access_token"];
-            this.uid = (string)jsonObject["uid"];
-            this.name = (string)jsonObject["name"];
-            this.avatar_large = (string)jsonObject["avatar_large"];
+            if (File.Exists("userAccount.json"))
+            {
+                StreamReader reader = File.OpenText("userAccount.json");
+                JsonTextReader jsonTextReader = new JsonTextReader(reader);
+                JObject jsonObject = (JObject)JToken.ReadFrom(jsonTextReader);
+                Console.WriteLine(jsonObject);
+                this.access_token = (string)jsonObject["access_token"];
+                this.uid = (string)jsonObject["uid"];
+                this.name = (string)jsonObject["name"];
+                this.avatar_large = (string)jsonObject["avatar_large"];
+            }
+            
         }
         public void SaveAccount() {
             string path = @".\userAccount.json";

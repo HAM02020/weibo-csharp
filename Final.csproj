@@ -93,6 +93,13 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Pic_urls.cs" />
+    <Compile Include="Model\WBStatus.cs" />
+    <Compile Include="Model\WBUser.cs" />
+    <Compile Include="ViewModel\WBStatusViewModel.cs" />
+    <Compile Include="WBCell.xaml.cs">
+      <DependentUpon>WBCell.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,6 +113,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WBCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

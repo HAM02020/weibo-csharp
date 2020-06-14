@@ -21,7 +21,7 @@ namespace Final
             return instance;
         }
 
-        UserAccount userAccount = UserAccount.Shared();
+        UserAccount userAccount =UserAccount.Shared();
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Final
         /// <param name="url"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        public string TokenRequest(string url,string param)
+        public string TokenRequest(string url,string param = "")
         {
             string token = userAccount.access_token;
             if (token == null)

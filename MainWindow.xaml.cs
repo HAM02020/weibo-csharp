@@ -1,7 +1,13 @@
-﻿using System;
+﻿using Final.Model;
+using Final.ViewModel;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +26,12 @@ namespace Final
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool IsLogin = false;
+
+        private WBStatusViewModel listViewModel = new WBStatusViewModel();
+
+
+        //是否登录
+        bool IsLogin = true;
 
         public MainWindow()
         {
@@ -35,6 +46,27 @@ namespace Final
         /// </summary>
         private void SetupUI()
         {
+            //从文件加载用户信息
+            if (File.Exists("userAccount.json"))
+            {
+                StreamReader reader = File.OpenText("userAccount.json");
+                JsonTextReader jsonTextReader = new JsonTextReader(reader);
+                JObject jsonObject = (JObject)JToken.ReadFrom(jsonTextReader);
+                if (jsonObject["access_token"] != null)
+                {
+                    IsLogin = true;
+                    UserAccount.Shared().access_token = (string)jsonObject["access_token"];
+                }
+                else
+                {
+                    IsLogin = false;
+                }
+            }
+            else
+            {
+                IsLogin = false;
+            }
+            
             if (!IsLogin)
             {
                 //登录页
@@ -48,17 +80,72 @@ namespace Final
                 gd_welcome.Visibility = Visibility.Hidden;
 
 
+                new Thread((() =>
+                {
+
+                    App.Current.Dispatcher.Invoke((Action)(() =>
+                    {
+                        //设置用户名
+                        tb_username.Text = UserAccount.Shared().name;
+
+
+                        //加载微博
+
+                        string response = NetWorkManager.Shared().TokenRequest("https://api.weibo.com/2/statuses/home_timeline.json");
+                        JObject json = JObject.Parse(response);
+                        JArray jArray = JArray.FromObject(json["statuses"]);
+                        foreach (JObject j in jArray)
+                        {
+                            //把数据 反序列化成模型
+                            Console.WriteLine(j["text"]);
+                            WBStatus status = j.ToObject<WBStatus>();
+
+                            Pic_urls pic_Urls = new Pic_urls();
+                            JArray jArray1 = JArray.FromObject(j["pic_urls"]);
+                            foreach (JObject jj in jArray1)
+                            {
+                                pic_Urls.thumbnail_pic.Add((string)jj["thumbnail_pic"]);
+                            }
+                            status.pic_urls = pic_Urls;
+
+                            //添加到ViewModel
+                            listViewModel.statusList.Add(status);
+                        }
+
+                        //从视图模型加载数据
+                        foreach(WBStatus wbStatus in listViewModel.statusList)
+                        {
+                            setupWBCell(wbStatus);
+                        }
+
+
+                    }));
+
+                })).Start();
+                
             }
         }
-
-        public Border SetupWB()
+        private void setupWBCell(WBStatus status)
         {
-            Border bd_main = new Border();
-            bd_main.CornerRadius = new CornerRadius(10);
-            bd_main.Background = Brushes.Black;
-            bd_main.BorderThickness = new Thickness(5, 10, 15, 20);
-            return bd_main;
+            WBCell cell = new WBCell();
+            //调用NetWorkManager获取微博数据
+
+            //把数据转模型
+
+            //把模型的值付给cell
+            cell.username.Text = status.user.screen_name;
+            cell.post_time.Text = status.created_at;
+            cell.text.Text = status.text;
+
+
+            //工具栏
+            cell.retweeted_count.Text = status.reposts_count.ToString();
+            cell.comment_count.Text = status.comments_count.ToString();
+            cell.like_count.Text = status.attitudes_count.ToString();
+
+            sp_status.Children.Add(cell);
         }
+
 
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
@@ -120,7 +207,18 @@ namespace Final
         private void Btn_login_Click(object sender, RoutedEventArgs e)
         {
             Login loginFrame = new Login();
+            loginFrame.Closed += new EventHandler(OnLoginframeClosed);
             loginFrame.ShowDialog();
         }
+        /// <summary>
+        /// 登录窗体关闭的事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLoginframeClosed(object sender,EventArgs e)
+        {
+
+        }
+        
     }
 }
