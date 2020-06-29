@@ -17,5 +17,7 @@ namespace Final.Model
         public int verified_type { get; set; }
         [JsonProperty]
         public int mbrank { get; set; }
+        [JsonProperty]
+        public string avatar_large { get; set; }
     }
 }

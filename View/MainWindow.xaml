@@ -44,7 +44,7 @@
             <Grid Grid.Column="0" Margin="10 10 0 10">
 
                 <Grid.Background>
-                    <ImageBrush ImageSource="pic\backgroud.jpg" Stretch="UniformToFill" Opacity="0.2"/>
+                    <ImageBrush ImageSource="..\pic\backgroud.jpg" Stretch="UniformToFill" Opacity="0.2"/>
                 </Grid.Background>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80"/>
@@ -61,7 +61,7 @@
                             <!--图标-->
                             <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
                             <!--文字-->
-                            <TextBlock Text="首页" VerticalAlignment="Center" Margin="15 0 0 0"/>
+                            <TextBlock Name="tb_btn_name" Text="首页" VerticalAlignment="Center" Margin="15 0 0 0"/>
                         </StackPanel>
                     </Button>
                     <Button Name="btn_msg" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" HorizontalAlignment="Center" Margin="15 20 15 0" Background="Transparent" BorderThickness="0" Click="Btn_Click" Foreground="#848484">
@@ -93,22 +93,22 @@
                     <Button Background="Transparent" BorderThickness="0" Foreground="#848484">
                         <TextBlock Text="&#xe8b9;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
                     </Button>
-                    <Button Name="btn_exit" Background="Transparent" BorderThickness="0" Foreground="#848484" Margin="90 0 0 0" Click="Btn_exit_Click">
+                    <Button Name="btn_exit" Background="Transparent" BorderThickness="0" Foreground="#848484" Margin="90 0 0 0" Click="Btn_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="&#xe533;" FontFamily="{StaticResource IconFont}" FontSize="22"/>
                         </StackPanel>
                     </Button>
-
+                    
                 </StackPanel>
             </Grid>
             <!--未登录页面-->
-            <materialDesign:Card Grid.Column="1" Margin="100" Visibility="Hidden">
-                <Grid Name="gd_welcome" Visibility="Visible">
+            <Grid Grid.Column="1" Name="gd_welcome" Background="#f2f2f2" Margin="10">
+                <materialDesign:Card Grid.Column="1" Margin="100">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock Text="&#xe8bd;" FontFamily="{StaticResource IconFont}" Foreground="#CD0000" FontSize="200" HorizontalAlignment="Center" />
                         <TextBlock Text="还未登录 登录后解锁精彩内容~!" Foreground="#848484" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Name="btn_login" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#87CEFA" Click="Btn_login_Click">
+                            <Button Name="btn_login" materialDesign:ShadowAssist.ShadowDepth="Depth2" Height="40" Width="160" Margin="15 20 15 0" Background="#87CEFA" Click="Btn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <!--图标-->
                                     <TextBlock Text="&#xe8ba;" FontFamily="{StaticResource IconFont}" FontSize="22" />
@@ -126,11 +126,12 @@
                             </Button>
                         </StackPanel>
                     </StackPanel>
-                </Grid>
-            </materialDesign:Card>
+                </materialDesign:Card>
+            </Grid>
+            
             
             <!--已登录页-->
-            <Grid Name="gd_pages" Grid.Column="1" Margin="10" Visibility="Visible">
+            <Grid Name="gd_pages" Grid.Column="1" Margin="10" Background="#f2f2f2" Visibility="Hidden">
                 <!--首页-->
                 <Grid Name="page_home">
                     <Grid.RowDefinitions>
@@ -139,7 +140,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock  Text="用户名" VerticalAlignment="Center" Margin="50 0 0 0" FontSize="22" FontWeight="Light" Name="tb_username"/>
                     <Border Margin="30 0 30 0" BorderBrush="DarkGray" BorderThickness="0 0 0 1"/>
-                    <ScrollViewer Grid.Row="1">
+                    <ScrollViewer Grid.Row="1" Name="scrollview">
                         <StackPanel Orientation="Vertical" Name="sp_status">
 
                         </StackPanel>

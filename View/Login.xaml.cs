@@ -12,8 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using CefSharp;
-using CefSharp.Wpf;
+
 
 namespace Final
 {
@@ -24,8 +23,14 @@ namespace Final
     {
         public Window window;
 
-        public static string WBAppKey = "4276674222";
-        public static string WBAppSecret = "610f8119d39ea76957b5fc665d59eb56";
+        //A01
+        //public static string WBAppKey = "4276674222";
+        //public static string WBAppSecret = "610f8119d39ea76957b5fc665d59eb56";
+
+        //电竞馆牛顿
+        public static string WBAppKey = "32755502";
+        public static string WBAppSecret = "b2be28311bf46112121e28319edd82b1";
+
         public static string WBRedirectURI = "http://baidu.com/";
         public static string urlStr = "https://api.weibo.com/oauth2/authorize?client_id=" + WBAppKey + "&redirect_uri=" + WBRedirectURI;
 
@@ -64,7 +69,10 @@ namespace Final
                     Code = code;
                     NetWorkManager.Shared().GetAccessToken(Code);
                     //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => {tb.Text="Token = "+Token ; }));
+                    //Application.Current.Shutdown();
 
+                    //Console.WriteLine(Application.Current.Windows.Count);
+                    Window.GetWindow(this).Close();
                 }
             }
         }

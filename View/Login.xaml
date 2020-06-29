@@ -12,6 +12,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <WebBrowser Name="wb" Loaded="wb_Loaded" Grid.ColumnSpan="2" Margin="0,0,33.6,0"/>
-        <TextBlock Name="tb" Text="hello" Grid.Column="1"/>
+        <TextBlock Grid.Column="1" Text="bb" />
     </Grid>
 </Window>
